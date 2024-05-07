@@ -8,21 +8,6 @@ Compute:
   Type: EC2
   Fleet: Linux.x86-64.Large
 Actions:
-  test:
-    Actions:
-      testcli:
-        Identifier: aws/build@v1
-        Inputs:
-          Sources: []
-          Variables:
-            - Name: LAUNCH_OPTIONS_region
-            - Name: LAUNCH_OPTIONS_foo
-            - Name: LAUNCH_OPTIONS_bar
-        Configuration:
-          Steps:
-            - Run: ls -la
-        Environment:
-          Name: prod_environment
   source:
     Identifier: aws/build@v1
     Inputs:
@@ -39,32 +24,8 @@ Actions:
     Configuration:
       Steps:
         - Run: ls -la
-  deploy-gamma:
-    Identifier: aws/build@v1
-    Inputs:
-      Sources: []
-      Artifacts:
-        - src
-      Variables:
-        - Name: LAUNCH_OPTIONS_region
-    Outputs:
-      AutoDiscoverReports:
-        Enabled: false
-        ReportNamePrefix: rpt
-    Configuration:
-      Steps:
-        - Run: yum install -y nodejs make git
-        - Run: npm install
-        - Run: npm run config
-        - Run: npm run boostrap
-        - Run: npm run up
-      Container:
-        Image: public.ecr.aws/amazonlinux/amazonlinux:2023
-        Registry: ECR
-    Environment:
-      Name: gamma_environment
   deploy-prod:
-    Identifier: aws/beta@v1
+    Identifier: aws/build@v1
     Inputs:
       Sources: []
       Artifacts:
