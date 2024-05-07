@@ -11,7 +11,7 @@ Actions:
   test:
     Actions:
       testcli:
-        Identifier: aws/build-beta@v1
+        Identifier: aws/build@v1
         Inputs:
           Sources: []
           Variables:
@@ -24,7 +24,7 @@ Actions:
         Environment:
           Name: prod_environment
   source:
-    Identifier: aws/build-beta@v1
+    Identifier: aws/build@v1
     Inputs:
       Sources:
         - WorkflowSource
@@ -40,7 +40,7 @@ Actions:
       Steps:
         - Run: ls -la
   deploy-gamma:
-    Identifier: aws/build-beta@v1
+    Identifier: aws/build@v1
     Inputs:
       Sources: []
       Artifacts:
@@ -64,7 +64,7 @@ Actions:
     Environment:
       Name: gamma_environment
   deploy-prod:
-    Identifier: aws/build-beta@v1
+    Identifier: aws/beta@v1
     Inputs:
       Sources: []
       Artifacts:
